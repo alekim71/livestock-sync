@@ -7,12 +7,16 @@ from datetime import datetime
 import time
 import os
 
+# --- [기존 코드를 아래 내용으로 수정하세요] ---
+
 # GitHub Secrets에서 불러올 정보들
 MONGO_URI = os.environ.get('MONGO_URI')
 BASE44_KEY = os.environ.get('BASE44_KEY')
 EKAPE_KEY = os.environ.get('EKAPE_KEY')
-MTRACE_ID = os.environ.get('MTRACE_ID')
-MTRACE_KEY = os.environ.get('MTRACE_KEY')
+
+# 이름을 아래와 같이 통일합니다 (코드 하단에서 사용하는 이름과 맞춤)
+DEFAULT_MTRACE_ID = os.environ.get('MTRACE_ID')
+DEFAULT_MTRACE_KEY = os.environ.get('MTRACE_KEY')
 CNU_MTRACE_ID = os.environ.get('CNU_MTRACE_ID')
 CNU_MTRACE_KEY = os.environ.get('CNU_MTRACE_KEY')
 
@@ -117,4 +121,5 @@ def run_integrated_pipeline():
     print("✅ 모든 공정 완료.")
 
 if __name__ == "__main__":
+
     run_integrated_pipeline()
