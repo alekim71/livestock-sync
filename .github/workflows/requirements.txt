@@ -1,4 +1,0 @@
-requests
-pymongo[srv]
-xmltodict
-certifi
