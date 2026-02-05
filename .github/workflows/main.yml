@@ -1,0 +1,29 @@
+name: Livestock Data Sync
+
+on:
+  schedule:
+    - cron: '18 18 * * *' # UTC 18:18은 한국 시간 오전 3:18입니다.
+  workflow_dispatch: # 수동 실행 버튼 활성화
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+      - name: Run script
+        env: # 위에서 설정한 Secrets를 연결
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          BASE44_KEY: ${{ secrets.BASE44_KEY }}
+          EKAPE_KEY: ${{ secrets.EKAPE_KEY }}
+          MTRACE_ID: ${{ secrets.MTRACE_ID }}
+          MTRACE_KEY: ${{ secrets.MTRACE_KEY }}
+          CNU_MTRACE_ID: ${{ secrets.CNU_MTRACE_ID }}
+          CNU_MTRACE_KEY: ${{ secrets.CNU_MTRACE_KEY }}
+        run: python main.py
