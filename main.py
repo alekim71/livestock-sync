@@ -87,8 +87,8 @@ def run_integrated_pipeline():
         ]
     }
     
-    # 오래된 순서대로 500두만 가져옵니다.
-    all_animals = list(db['AnimalMaster'].find(query).sort("last_updated", 1).limit(500))
+    # 오래된 순서대로 1000두만 가져옵니다.
+    all_animals = list(db['AnimalMaster'].find(query).sort("last_updated", 1).limit(1000))
     
     print(f"2️⃣ [대상 선정] 업데이트가 필요한 소 {len(all_animals)}두 수집 시작...")
 
@@ -128,4 +128,5 @@ def run_integrated_pipeline():
 
 if __name__ == "__main__":
     run_integrated_pipeline()
+
 
